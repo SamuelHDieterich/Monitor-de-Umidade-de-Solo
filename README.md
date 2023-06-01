@@ -1,2 +1,2 @@
-# Monitor-de-Umidade-de-Solo
+# Monitor de Umidade de Solo
 Projeto para monitorar a umidade do solo para uso em plantações desenvolvido para as cadeiras CEF99001 e CEF99002 correspondendo a Elaboração e Execução de Projetos de Engenharia Física.
