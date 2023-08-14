@@ -1,12 +1,12 @@
 DROP TABLE IF EXISTS
-    colector_status
-  , colector_records
+    collector_status
+  , collector_record
   , calculated_humidity
   , receptor_status
 ;
 
 
-CREATE TABLE IF NOT EXISTS colector_status (
+CREATE TABLE IF NOT EXISTS collector_status (
     collector_id  INTEGER       NOT NULL
   , start_date    TIMESTAMPTZ   NOT NULL
   , end_date      TIMESTAMPTZ   NULL
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS colector_status (
     )
 );
 
-CREATE TABLE IF NOT EXISTS colector_records (
+CREATE TABLE IF NOT EXISTS collector_record (
     collector_id    INTEGER     NOT NULL
   , collection_date TIMESTAMPTZ NOT NULL
   , read_humidity   INTEGER     NOT NULL
@@ -38,6 +38,6 @@ CREATE TABLE IF NOT EXISTS calculated_humidity (
 );
 
 CREATE TABLE IF NOT EXISTS receptor_status (
-    update_date       TIMESTAMPTZ NOT NULL
+    update_date       TIMESTAMPTZ NOT NULL PRIMARY KEY
   , records_in_buffer INTEGER     NOT NULL
 );
