@@ -17,6 +17,7 @@ from utils.database import SessionLocal, engine
 ################
 
 from fastapi import Depends, FastAPI, HTTPException, Query, status
+from mangum import Mangum
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -31,6 +32,9 @@ app = FastAPI(
   description="API para monitor de umidade de solo",
   version="0.0.1",
 )
+
+handler = Mangum(app=app)
+
 
 
 ################################################################################
