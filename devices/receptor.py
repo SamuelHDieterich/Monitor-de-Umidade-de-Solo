@@ -55,7 +55,7 @@ SLEEP_TIME = 60 # seconds
 # Wifi connections
 wifi = network.WLAN(network.STA_IF)
 wifi.active(True)
-wifi.connect(**WIFI_CREDENTIALS)
+wifi.connect(WIFI_CREDENTIALS["ssid"], WIFI_CREDENTIALS["password"])
 
 # LoRa initialisation
 lora = LoRa(
