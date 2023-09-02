@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html { height: 100%; width: 100%;}
+
+body { min-height: 100%; }
+
+.container {  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.5fr 1.5fr;
+  gap: 2em 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "logo"
+    "linechart";
+  padding: 2em;
+  height: 100vh;
+  width: 100vw;
+}
+
+.logo {
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.linechart {
+  grid-area: linechart;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+}
+
+
+/* 
+For smaller screens, the logo and linechart will be displayed side by side.
+*/
+
+@media screen and (max-height: 700px) {
+  .container {
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+    gap: 0px 2em;
+    grid-template-areas: "logo linechart";
+    padding: 2em;
+    height: 100vh;
+    width: 100vw;
+  }
+}
