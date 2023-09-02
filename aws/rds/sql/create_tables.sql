@@ -27,15 +27,16 @@ CREATE TABLE IF NOT EXISTS collector_record (
     )
 );
 
-CREATE TABLE IF NOT EXISTS calculated_humidity (
-    collector_id        INTEGER       NOT NULL
-  , calculation_date    TIMESTAMPTZ   NOT NULL
-  , humidity_percentage NUMERIC(5,2)  NOT NULL
-  , PRIMARY KEY (
-        collector_id
-      , calculation_date
-    )
-);
+CREATE OR REPLACE VIEW calculated_humidity AS
+SELECT
+    collector_id
+  , collection_date AS calculation_date
+  -- Dry (0%) - 65535
+  -- Wet (100%) - 23429
+  -- a + (x-min(x))(b-a)/(max(x)-min(x))
+  , CAST(LEAST(100 * (65535 - CAST(read_humidity AS FLOAT)) / 42106, 100.0) AS NUMERIC(5,2)) AS humidity_percentage 
+FROM collector_record
+;
 
 CREATE TABLE IF NOT EXISTS receptor_status (
     update_date       TIMESTAMPTZ NOT NULL PRIMARY KEY
